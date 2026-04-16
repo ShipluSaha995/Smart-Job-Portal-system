@@ -27,7 +27,37 @@ def register():
 	conn.close()
 
 def login():
-	pass
+	conn=connect()
+	cur=conn.cursor()
+
+	email=input("E-mail: ")
+	password=hash_passowrd(input("Password: "))
+
+	cur.execute(
+		"SELECT user_id, role FROM users WHERE email=%s AND password=%s",
+		(email, password)
+	)
+
+	user=cur.fetchone()
+	conn.close()
+	return user
 
 def reset_password():
-	pass 
+	conn=connect()
+	cur=conn.cursor()
+
+	email=input("Enter E-mail: ")
+	cur.execute("SELECT user_id FROM users WHERE email=%s",(email,))
+	user=cur.fetchone()
+
+	if not user:
+		print("E-mail not found.")
+		conn.close()
+		return
+	
+	new_pass=hash_passowrd(input("Enter new password: "))
+	cur.execute("UPDATE users SET password=%s WHERE email=%s", (new_pass, email))
+
+	conn.commit()
+	print("password updated successfully.")
+	conn.close()
