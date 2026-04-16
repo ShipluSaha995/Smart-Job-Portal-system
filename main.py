@@ -1,4 +1,4 @@
-from auth import register, login
+from auth import register, login, reset_password
 from job import *
 from application import *
 from admin import *
@@ -56,7 +56,7 @@ def applicant_menu(uid):
 while True:
     print("*****Smart Job Portal******")
     print("\n____________________________")
-    print("\n1. Register\n2. Login\n3. Exit")
+    print("\n1. Register\n2. Login\n3. Reset Password\n 4. Exit")
     ch=input("Enter your choice: ")
 
     if(ch=="1"):
@@ -74,6 +74,14 @@ while True:
                 applicant_menu(uid)
         else:
             print("Invalid user/password")
-    else:
+    
+    elif ch=="3":
+       reset_password()
+    
+    elif ch=="4":
+        print("Loggged Out.")
         break
+
+    else:
+        print("Invalid choice.")
     
