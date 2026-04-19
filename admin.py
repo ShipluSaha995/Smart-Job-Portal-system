@@ -21,20 +21,19 @@ def view_all_jobs():
     conn.close()
 
 def view_all_applications():
-    conn=connect()
-    cur=conn.cursor()
+    conn=connect(); cur=conn.cursor()
 
     cur.execute("""
-    SELECT a.app_id, u_name, j.title, j.company, a.skills, a.experience, a.score
-    FROM applications a 
-    JOIN user u ON a.user_id=u.user_id
+    SELECT a.app_id,u.name,j.title,j.company,a.skills,a.experience,a.score
+    FROM applications a
+    JOIN users u ON a.user_id=u.user_id
     JOIN jobs j ON a.job_id=j.job_id
     """)
 
     for row in cur.fetchall():
         print(row)
-    conn.close()
 
+    conn.close()
 def dashboard():
     conn=connect()
     cur=conn.cursor()

@@ -51,7 +51,7 @@ def search_jobs():
     for j in jobs:
         d=dist.get(j[2],9999)
         priority=d-(j[3]/1000)
-        ranked.append(j,priority)
+        ranked.append((j, priority))
 
     for i in range(len(ranked)):
         for j in range(i+1, len(ranked)):

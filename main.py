@@ -34,6 +34,8 @@ def employer_menu(uid):
             view_jobs()
         elif c=="3":
             view_applicants(int(input("Job ID: ")))
+        else:
+            break
 
 
 def applicant_menu(uid):
@@ -69,7 +71,7 @@ while True:
             if role=="admin":
                 admin_menu()
             elif role=="employer":
-                employer_menu()
+                employer_menu(uid)
             else:
                 applicant_menu(uid)
         else:
@@ -79,7 +81,6 @@ while True:
        reset_password()
     
     elif ch=="4":
-        print("Loggged Out.")
         break
 
     else:

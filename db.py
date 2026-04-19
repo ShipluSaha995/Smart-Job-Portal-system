@@ -1,9 +1,9 @@
 import mysql.connector
+
 def connect():
     return mysql.connector.connect(
-        host="local host",
+        host="localhost",   # ✅ no space
         user="root",
-        passwor="",
+        password="!@**Data**1621101##@!",        # ✅ correct spelling
         database="job_portal"
-
     )

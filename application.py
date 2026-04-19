@@ -36,7 +36,7 @@ def view_applicants(job_id):
     conn=connect()
     cur=conn.cursor()
 
-    cur.execute("SELECT user_id,score FROM applicantions WHERE job_id=%s",(job_id,))
+    cur.execute("SELECT user_id,score FROM applications WHERE job_id=%s",(job_id,))
     data=cur.fetchall()
 
     top=top_k(data)
