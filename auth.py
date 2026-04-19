@@ -35,6 +35,7 @@ def login():
 
 	email=input("\n\t\t\t\tE-mail: ")
 	password=hash_passowrd(input("\t\t\t\tPassword: "))
+	print("____________________________________________________________________________________________________________________________________________________________\n")
 
 	cur.execute(
 		"SELECT user_id, role FROM users WHERE email=%s AND password=%s",

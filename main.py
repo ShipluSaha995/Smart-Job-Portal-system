@@ -25,8 +25,10 @@ def admin_menu():
 
 def employer_menu(uid):
     while True:
-        print("\n1. Post Job(uid)\n 2. View Jobs\n 3. View Applicants\n 4. Logout")
-        c=input("Enter Your Choice: ")
+        print("Employer Menu: ")
+        print("_______________")
+        print("\n\t\t\t\t1. Post Job\n\t\t\t\t2. View Jobs\n\t\t\t\t3. View Applicants\n\t\t\t\t4. Logout")
+        c=input("\n\t\t\t\tEnter Your Choice: ")
 
         if c=="1" :
             post_job(uid)
@@ -36,15 +38,21 @@ def employer_menu(uid):
             view_applicants(int(input("Job ID: ")))
         else:
             break
+        
 
 
 def applicant_menu(uid):
     while True:
-        print("\n1. View Jobs\n 2. Apply\n 3. Search\n 4. Catagory\n 5. Logout\n")
-        c= input("Enter your choice: ")
+        print("Appplicant Menu: ")
+        print("________________")
+        print("\n\t\t\t\t1. View Jobs\n\t\t\t\t2. Apply\n\t\t\t\t3. Search\n\t\t\t\t4. Catagory\n\t\t\t\t5. Logout\n")
+        c= input("\t\t\t\tEnter your choice: ")
 
         if c=="1":
+            print("\nJobs: ")
+            print("_______\n")
             view_jobs()
+            print("\n")
         elif c=="2":
             apply_job(uid)
         elif c=="3":
@@ -53,6 +61,8 @@ def applicant_menu(uid):
             search_by_catagory()
         else:
             break
+            
+        
 
 
 while True:

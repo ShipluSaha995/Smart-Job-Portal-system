@@ -13,6 +13,7 @@ def post_job(emp_id):
     salary=int(input("Salary: "))
     skills=input("Skills: ")
     category=input("Catagory: ")
+    print("____________________________________________________________________________________________________________________________________________________________\n")
 
     cur.execute(
         """
@@ -31,8 +32,13 @@ def view_jobs():
     conn=connect()
     cur=conn.cursor()
     cur.execute("SELECT * FROM jobs")
+    print("\n")
+    print("Posted Jobs: ")
+    print("____________\n")
     for j in cur.fetchall():
         print(j)
+        print("\n")
+    print("\n")
     conn.close()
 
 
@@ -50,18 +56,22 @@ def search_jobs():
     ranked=[]
     for j in jobs:
         d=dist.get(j[2],9999)
-        priority=d-(j[3]/1000)
+        priority = (j[3] / 1000) - d
         ranked.append((j, priority))
 
     for i in range(len(ranked)):
         for j in range(i+1, len(ranked)):
-            if ranked[j][1]<ranked[i][1]:
+            if ranked[j][1] > ranked[i][1]:
                 ranked[i],ranked[j]=ranked[j],ranked[i]
 
 
-    print("\n Best Jobs: ")
+    print("\nBest Jobs: ")
+    print("__________\n")
+    
     for job, p in ranked:
         print(job, "Priority: ",p)
+    
+    print("\n")
 
     conn.close()
 
@@ -71,9 +81,11 @@ def search_by_catagory():
     conn=connect()
     cur=conn.cursor()
     cat=input("Category: ")
+    print("_________\n")
     cur.execute("SELECT * FROM jobs WHERE category=%s",(cat,))
 
     for j in cur.fetchall():
         print(j)
+    print("\n")
         
     conn.close()

@@ -24,10 +24,12 @@ def apply_job(uid):
         """,(uid,job_id,skills,exp,score))
 
         conn.commit()
-        print("Applied Successfully.")
+        print("\n\t\t\t\t*****Applied Successfully.******")
+        print("____________________________________________________________________________________________________________________________________________________________\n")
     
     except:
-        print("Already Applied.")
+        print("\n\t\t\t\t======Already Applied.=========")
+        print("____________________________________________________________________________________________________________________________________________________________\n")
     conn.close()
 
 
@@ -36,12 +38,23 @@ def view_applicants(job_id):
     conn=connect()
     cur=conn.cursor()
 
-    cur.execute("SELECT user_id,score FROM applications WHERE job_id=%s",(job_id,))
+    cur.execute("""
+    SELECT u.name, u.email, a.skills, a.experience, a.score
+    FROM applications a
+    JOIN users u ON a.user_id = u.user_id
+    WHERE a.job_id = %s
+    """,(job_id,))
     data=cur.fetchall()
 
     top=top_k(data)
 
-    print("\nTop Applications.\n")
+    print("\nTop Applicants: ")
+    print("_________________")
     for t in top:
-        print(t)
+        print("\nName:", t[0])
+        print("Email:", t[1])
+        print("Skills:", t[2])
+        print("Experience:", t[3])
+        print("Score:", t[4])
+        print("____________________________________________________________________________________________________________________________________________________________\n")
     conn.close()
