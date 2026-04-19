@@ -8,12 +8,12 @@ def register():
 	conn=connect()
 	cur=conn.cursor()
 
-	print("\n 1.Employer\n2. Applicant")
-	role="employer" if input("Chooose: ")=="1" else "applicant"
+	print("\n\t\t\t\t\t1. Employer\n\t\t\t\t\t2. Applicant")
+	role="employer" if input("\n\t\t\t\tChooose: ")=="1" else "applicant"
 
-	name= input("Name: ")
-	email=input("E-mail: ")
-	password=hash_passowrd(input("Password: "))
+	name= input("\t\t\t\tName: ")
+	email=input("\t\t\t\tE-mail: ")
+	password=hash_passowrd(input("\t\t\t\tPassword: "))
 
 	try:
 		cur.execute(
@@ -21,17 +21,20 @@ def register():
 			(name, email, password, role)
 		)
 		conn.commit()
-		print("Account Created Successfully.")
+		print("\n\t\t\t\t====Account Created Successfully.======\n")
+		print("____________________________________________________________________________________________________________________________________________________________\n")
 	except:
-		print("Email Already exists.")
+		print("\t\t\t\t_____________________")
+		print("\t\t\t\tEmail Already exists.")
+		print("\t\t\t\t_____________________")
 	conn.close()
 
 def login():
 	conn=connect()
 	cur=conn.cursor()
 
-	email=input("E-mail: ")
-	password=hash_passowrd(input("Password: "))
+	email=input("\n\t\t\t\tE-mail: ")
+	password=hash_passowrd(input("\t\t\t\tPassword: "))
 
 	cur.execute(
 		"SELECT user_id, role FROM users WHERE email=%s AND password=%s",
@@ -46,18 +49,18 @@ def reset_password():
 	conn=connect()
 	cur=conn.cursor()
 
-	email=input("Enter E-mail: ")
+	email=input("\t\t\t\tEnter E-mail: ")
 	cur.execute("SELECT user_id FROM users WHERE email=%s",(email,))
 	user=cur.fetchone()
 
 	if not user:
-		print("E-mail not found.")
+		print("\t\t\t\t!!!E-mail not found.!!!")
 		conn.close()
 		return
 	
-	new_pass=hash_passowrd(input("Enter new password: "))
+	new_pass=hash_passowrd(input("\t\t\t\tEnter new password: "))
 	cur.execute("UPDATE users SET password=%s WHERE email=%s", (new_pass, email))
 
 	conn.commit()
-	print("password updated successfully.")
+	print("\n\t\t\t\t=====password updated successfully.======")
 	conn.close()

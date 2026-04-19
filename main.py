@@ -56,14 +56,19 @@ def applicant_menu(uid):
 
 
 while True:
-    print("*****Smart Job Portal******")
-    print("\n____________________________")
-    print("\n1. Register\n2. Login\n3. Reset Password\n 4. Exit")
-    ch=input("Enter your choice: ")
+    print("\n\t\t\t\t*****Smart Job Portal******")
+    print("\t\t\t\t____________________________")
+    print("\n\t\t\t\t1. Register\n\t\t\t\t2. Login\n\t\t\t\t3. Reset Password\n\t\t\t\t4. Exit")
+    ch=input("\n\t\t\t\tEnter your choice: ")
+    print("____________________________________________________________________________________________________________________________________________________________\n")
 
     if(ch=="1"):
+        print("\n\t\t\t\tRegister: ")
+        print("\t\t\t\t__________")
         register()
     elif(ch=="2"):
+        print("\n\t\t\t\tLogin: ")
+        print("\t\t\t\t__________")
         user=login()
 
         if user:
@@ -75,8 +80,8 @@ while True:
             else:
                 applicant_menu(uid)
         else:
-            print("Invalid user/password")
-    
+            print("\n\t\t\t\t!!!Invalid E-mail/password!!!")
+            print("____________________________________________________________________________________________________________________________________________________________\n")    
     elif ch=="3":
        reset_password()
     

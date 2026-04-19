@@ -41,7 +41,7 @@ def view_applicants(job_id):
 
     top=top_k(data)
 
-    print("\nTop APplications.\n")
+    print("\nTop Applications.\n")
     for t in top:
         print(t)
     conn.close()
