@@ -4,6 +4,12 @@ A console-based Job Portal System built using Python and MySQL. This system allo
 
 ---
 
+## 👨‍💻 Author
+
+- **Shiplu Saha**
+
+---
+
 ## 🚀 Features
 
 ### 👤 User System
@@ -122,6 +128,5 @@ Insert Admin Information:
 INSERT INTO users (name,email,password,role)
 VALUES ('Admin','admin@gmail.com',SHA2('admin123',256),'admin');
 
-## 👨‍💻 Author
 
-- **Shiplu Saha**
+
