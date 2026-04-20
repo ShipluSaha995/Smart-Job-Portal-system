@@ -55,9 +55,10 @@ def search_jobs():
     dist=dijkstra(graph,user_loc)
     ranked=[]
     for j in jobs:
-        d=dist.get(j[2],9999)
+        d = dist.get(j[2], 9999)
+        travel_cost = d * 5   #5tk per km 
         priority = (j[3] / 1000) - d
-        ranked.append((j, priority))
+        ranked.append((j, priority, travel_cost, d))
 
     for i in range(len(ranked)):
         for j in range(i+1, len(ranked)):
@@ -68,24 +69,61 @@ def search_jobs():
     print("\nBest Jobs: ")
     print("__________\n")
     
-    for job, p in ranked:
-        print(job, "Priority: ",p)
+    for job, p, cost, dist_val in ranked:
+        print("Job:", job)
+        print("Distance:", dist_val, "km")
+        print("Travel Cost:", cost, "taka")
+        print("Priority:", p)
     
-    print("\n")
+        print("\n")
+        print("____________________________________________________________________________________________________________________________________________________________\n")
+
 
     conn.close()
 
 
 
-def search_by_catagory():
-    conn=connect()
-    cur=conn.cursor()
-    cat=input("Category: ")
-    print("_________\n")
-    cur.execute("SELECT * FROM jobs WHERE category=%s",(cat,))
+def search_by_category():
+    conn = connect(); cur = conn.cursor()
 
-    for j in cur.fetchall():
-        print(j)
-    print("\n")
-        
+    user_loc = input("Your Location: ")
+    cat = input("Category: ")
+
+    cur.execute("SELECT job_id,title,location,salary FROM jobs WHERE category=%s",(cat,))
+    jobs = cur.fetchall()
+
+    from dijkstra import dijkstra
+    from graph import graph
+
+    dist = dijkstra(graph, user_loc)
+
+    ranked = []
+
+    for j in jobs:
+        d = dist.get(j[2], 9999)
+
+        travel_cost = d * 5   # cost per km
+
+        priority = (j[3] / 1000) - d
+
+        ranked.append((j, priority, travel_cost, d))
+
+    # sorting
+    for i in range(len(ranked)):
+        for j in range(i+1, len(ranked)):
+            if ranked[j][1] > ranked[i][1]:
+                ranked[i], ranked[j] = ranked[j], ranked[i]
+
+    print("\nFiltered Jobs (by Category):")
+    print("____________________________")
+
+    for job, p, cost, dist_val in ranked:
+        print("\nJob:", job)
+        print("Distance:", dist_val, "km")
+        print("Travel Cost:", cost, "taka")
+        print("Priority:", p)
+        print("\n")
+        print("____________________________________________________________________________________________________________________________________________________________\n")
+
+
     conn.close()

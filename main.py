@@ -6,8 +6,10 @@ from admin import *
 
 def admin_menu():
     while True:
-        print("\n 1. Dashboard\n2. All Users\n3. All Jobs\n4. All applicatios\n5. MST\n 6. Logout ")
-        c=input("Enter Your Choice: ")
+        print("Admin Menu: ")
+        print("___________")
+        print("\n\t\t\t\t1. Dashboard\n\t\t\t\t2. All Users\n\t\t\t\t3. All Jobs\n\t\t\t\t4. All applicatios\n\t\t\t\t5. MST\n\t\t\t\t6. Logout ")
+        c=input("\n\t\t\t\tEnter Your Choice: ")
 
         if c=="1":
             dashboard()
@@ -58,7 +60,7 @@ def applicant_menu(uid):
         elif c=="3":
             search_jobs()
         elif c=="4":
-            search_by_catagory()
+            search_by_category()
         else:
             break
             
