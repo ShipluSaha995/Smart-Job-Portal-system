@@ -4,6 +4,6 @@ def connect():
     return mysql.connector.connect(
         host="localhost", 
         user="root",
-        password="!@**Data**1621101##@!",       
+        password="",       
         database="job_portal"
     )
